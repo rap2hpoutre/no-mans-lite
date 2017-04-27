@@ -3,5 +3,5 @@ extern crate nml;
 use nml::*;
 
 fn main() {
-    starfield::hello();
+    println!("done");
 }

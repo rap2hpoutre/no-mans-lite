@@ -54,28 +54,25 @@ impl Starfield {
     }
 
     pub fn play(&mut self, t: types::Matrix2d, g: &mut G2d) {
-        // window.draw_2d(&e, |c, g| {
-            for star in &mut self.stars {
-                star.z -= 0.4;
-                if star.z <= 0.0 {
-                    star.x = xy_range();
-                    star.y = xy_range();
-                    star.z = MAX_DEPTH as f64;
-                }
-                // Perspective projection of stars
-                let k  = 128.0 / star.z;
-                let px: f64 = star.x * k + self.hwidth as f64;
-                let py: f64 = star.y * k + self.hheight as f64;
-
-                if px >= 0.0 && px <= self.width as f64 && py >= 0.0 && py <= self.height as f64  {
-                    let size = (1.0 - star.z / 32.0) * 5.0;
-                    let shade = (1.0 - star.z / 64.0) as f32;
-                    rectangle([shade, shade, shade, 1.0],
-                        [px , py, size, size],
-                        t, g);
-                }
+        for star in &mut self.stars {
+            star.z -= 0.4;
+            if star.z <= 0.0 {
+                star.x = xy_range();
+                star.y = xy_range();
+                star.z = MAX_DEPTH as f64;
             }
-        // });
-        
+            // Perspective projection of stars
+            let k  = 128.0 / star.z;
+            let px: f64 = star.x * k + self.hwidth as f64;
+            let py: f64 = star.y * k + self.hheight as f64;
+
+            if px >= 0.0 && px <= self.width as f64 && py >= 0.0 && py <= self.height as f64  {
+                let size = (1.0 - star.z / 32.0) * 5.0;
+                let shade = (1.0 - star.z / 64.0) as f32;
+                rectangle([shade, shade, shade, 1.0],
+                    [px , py, size, size],
+                    t, g);
+            }
+        }
     }
 }

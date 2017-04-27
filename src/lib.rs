@@ -1,4 +1,6 @@
 pub mod starfield;
+pub mod planet;
+
 
 pub mod game {
     pub struct Resolution {
