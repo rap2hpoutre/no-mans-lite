@@ -35,7 +35,7 @@ pub struct Starfield {
     height: u32,
     hwidth: u32,
     hheight: u32,
-    stars: Vec<Star>
+    stars: Vec<Star>,
 }
 
 impl Starfield {
@@ -46,10 +46,10 @@ impl Starfield {
         }
         Starfield {
             width: res.width,
-            hwidth: res.width/2,
+            hwidth: res.width / 2,
             height: res.height,
-            hheight: res.height/2,
-            stars: stars
+            hheight: res.height / 2,
+            stars: stars,
         }
     }
 
@@ -62,16 +62,14 @@ impl Starfield {
                 star.z = MAX_DEPTH as f64;
             }
             // Perspective projection of stars
-            let k  = 128.0 / star.z;
+            let k = 128.0 / star.z;
             let px: f64 = star.x * k + self.hwidth as f64;
             let py: f64 = star.y * k + self.hheight as f64;
 
-            if px >= 0.0 && px <= self.width as f64 && py >= 0.0 && py <= self.height as f64  {
+            if px >= 0.0 && px <= self.width as f64 && py >= 0.0 && py <= self.height as f64 {
                 let size = (1.0 - star.z / 32.0) * 5.0;
                 let shade = (1.0 - star.z / 64.0) as f32;
-                rectangle([shade, shade, shade, 1.0],
-                    [px , py, size, size],
-                    t, g);
+                rectangle([shade, shade, shade, 1.0], [px, py, size, size], t, g);
             }
         }
     }
