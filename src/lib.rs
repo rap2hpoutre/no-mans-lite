@@ -1,5 +1,5 @@
 pub mod starfield;
-pub mod planet;
+pub mod landscape;
 
 
 pub mod game {
